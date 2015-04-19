@@ -70,6 +70,14 @@ class Link extends Builder
     }
     
     /**
+     * @inheritDoc
+     */
+    public function getCreateUrl()
+    {
+        return $this->getClass();
+    }
+    
+    /**
      * ToArray function.
      * 
      * @return array

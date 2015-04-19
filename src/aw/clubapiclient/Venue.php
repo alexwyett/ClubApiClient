@@ -92,7 +92,7 @@ class Venue extends PrivateEntity
      */
     public function __toString()
     {
-        return $this->getName();
+        return $this->getName() . ', ' . (string) $this->getAddress();
     }
     
     /**

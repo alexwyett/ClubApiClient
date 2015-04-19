@@ -188,6 +188,37 @@ abstract class Collection extends \aw\clubapiclient\Base implements CollectionIn
     }
     
     /**
+     * Remove an element by its id
+     * 
+     * @param integer $id Element id
+     * 
+     * @return \aw\clubapiclient\collection\Collection
+     */
+    public function removeElementById($id)
+    {
+        foreach ($this->getElements() as $ind => $ele) {
+            if ($ele->getId() == $id) {
+                unset($this->elements[$ind]);
+                break;
+            }
+        }
+        
+        return $this;
+    }
+    
+    /**
+     * Remove an element by its id
+     * 
+     * @param \aw\clubapiclient\Base $element Element
+     * 
+     * @return \aw\clubapiclient\collection\Collection
+     */
+    public function removeElement(\aw\clubapiclient\Base $element)
+    {
+        return $this->removeElementById($element->getId());
+    }
+    
+    /**
      * Return the total amount of elements found
      * 
      * @return integer
