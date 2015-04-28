@@ -17,7 +17,7 @@ try {
         $contacts = $club->getContacts();
         if ($contacts->getTotal() > 0) {
             echo '<h3>Contacts</h3>';
-            foreach ($contacts->getElements() as $contact) {
+            foreach ($contacts as $contact) {
                 echo sprintf('<p>%s</p>', (string) $contact);
             }
         }
@@ -25,7 +25,7 @@ try {
         $venues = $club->getClubVenues();
         if ($venues->getTotal() > 0) {
             echo '<h3>Plays at:</h3>';
-            foreach ($venues->getElements() as $venue) {
+            foreach ($venues as $venue) {
                 echo sprintf('<p>%s</p>', (string) $venue->getVenue());
             }
         }

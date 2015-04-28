@@ -7,10 +7,7 @@ try {
     
     echo '<h4>Titles</h4>';
     $titles = new \aw\clubapiclient\collection\Title();
-    $titles->fetch();
-    foreach ($titles as $title) {
-        echo (string) $title;
-    }
+    echo implode(', ', $titles->fetch()->getElements());
     
     echo '<h4>Tags</h4>';
     $tags = new \aw\clubapiclient\collection\Tag();
@@ -26,7 +23,7 @@ try {
     
     echo '<h4>Clubs</h4>';
     $clubs = new \aw\clubapiclient\collection\Club();
-    foreach ($clubs->fetch()->getElements() as $club) {
+    foreach ($clubs->fetch() as $club) {
         echo sprintf(
             '<p><a href="requesting-club-data.php?clubId=%s">%s</a></p>',
             $club->getId(),
