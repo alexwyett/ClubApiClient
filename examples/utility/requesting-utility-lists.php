@@ -7,7 +7,10 @@ try {
     
     echo '<h4>Titles</h4>';
     $titles = new \aw\clubapiclient\collection\Title();
-    echo implode(', ', $titles->fetch()->getElements());
+    $titles->fetch();
+    foreach ($titles as $title) {
+        echo (string) $title;
+    }
     
     echo '<h4>Tags</h4>';
     $tags = new \aw\clubapiclient\collection\Tag();

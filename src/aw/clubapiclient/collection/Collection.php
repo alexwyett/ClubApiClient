@@ -31,7 +31,7 @@ namespace aw\clubapiclient\collection;
  * 
  * @method Collection setRoute(string $route) Set the route
  */
-abstract class Collection extends \aw\clubapiclient\Base implements CollectionInterface
+abstract class Collection extends \aw\clubapiclient\Base implements CollectionInterface, \IteratorAggregate
 {
     /**
      * Elements array
@@ -274,5 +274,13 @@ abstract class Collection extends \aw\clubapiclient\Base implements CollectionIn
     public function toArray()
     {
         return $this->getElements();
+    }
+    
+    /**
+     * @inheritDoc
+     */
+    public function getIterator()
+    {
+        return new \ArrayIterator($this->getElements());
     }
 }
