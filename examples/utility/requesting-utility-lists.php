@@ -23,6 +23,16 @@ try {
     echo '<h4>Days</h4>';
     $days = new \aw\clubapiclient\collection\TimeslotDay();
     echo implode(', ', $days->fetch()->getElements());
+    
+    echo '<h4>Clubs</h4>';
+    $clubs = new \aw\clubapiclient\collection\Club();
+    foreach ($clubs->fetch()->getElements() as $club) {
+        echo sprintf(
+            '<p><a href="requesting-club-data.php?clubId=%s">%s</a></p>',
+            $club->getId(),
+            $club->getName()
+        );
+    }
         
 } catch(Exception $e) {
     echo $e->getMessage();
