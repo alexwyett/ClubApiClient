@@ -149,7 +149,9 @@ abstract class Base
         }
             
         $object = new static();
-        self::setObjectProperties($object, $element);
+        if (is_array($element) || $element instanceof \stdClass) {
+            self::setObjectProperties($object, $element);
+        }
 
         return $object;
     }
