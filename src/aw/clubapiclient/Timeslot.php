@@ -34,8 +34,7 @@ namespace aw\clubapiclient;
  * @method string   getDescription()             Return the description
  * @method Timeslot setDescription(string $desc) Set the description
  * 
- * @method TimeslotDay getDay()                 Return the day
- * @method Timeslot    setDay(TimeslotDay $day) Set the day
+ * @method TimeslotDay getDay() Return the day
  */
 class Timeslot extends Builder
 {
@@ -70,13 +69,28 @@ class Timeslot extends Builder
     // ------------------ Public Functions --------------------- //
     
     /**
+     * Set the day
+     * 
+     * @param array|stdClass\TimeslotDay $day Day object
+     * 
+     * @return \aw\clubapiclient\Timeslot
+     */
+    public function setDay($day)
+    {
+        $this->day = TimeslotDay::factory($day);
+        
+        return $this;
+    }
+    
+    /**
      * ToString magic method
      * 
      * @return string
      */
     public function __toString()
     {
-        return $this->getFromTime() 
+        return $this->getDescription()
+            . ': ' . $this->getFromTime() 
             . ' to ' 
             . $this->getTillTime()
             . ' every ' . $this->getDay()->getDay();

@@ -23,7 +23,7 @@ try {
     
     echo '<h4>Clubs</h4>';
     $clubs = new \aw\clubapiclient\collection\Club();
-    foreach ($clubs->fetch()->getElements() as $club) {
+    foreach ($clubs->fetch() as $club) {
         echo sprintf(
             '<p><a href="requesting-club-data.php?clubId=%s">%s</a></p>',
             $club->getId(),
