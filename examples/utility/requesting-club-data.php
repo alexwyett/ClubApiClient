@@ -31,7 +31,34 @@ try {
         }
        
    } else {
-       echo 'clubId not specified';
+       
+        $clubs = new aw\clubapiclient\collection\Club();
+        $clubs->setLimit(filter_input(INPUT_GET, 'limit'))
+            ->setPage(filter_input(INPUT_GET, 'page'))
+            ->fetch();
+        echo '<h2>' . $clubs->getTotal() . ' found</h2>';
+        
+        $pager = $clubs->getPagination();
+        foreach ($clubs->getElements() as $club) {
+            echo sprintf(
+                '<p><a href="requesting-club-data.php?clubId=%s">%s</a></p>',
+                $club->getId(),
+                (string) $club
+            );
+        }
+        echo sprintf(
+            '<p><a href="?page=%s&limit=%s">Previous</a>',
+            $pager->getPrevPage(),
+            $pager->getLimit()
+        );
+        
+        echo ' | ';
+        echo sprintf(
+            '<a href="?page=%s&limit=%s">Next</a></p>',
+            $pager->getNextPage(),
+            $pager->getLimit()
+        );
+       
    }
         
 } catch(Exception $e) {
