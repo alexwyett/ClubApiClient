@@ -26,7 +26,7 @@ try {
         if ($venues->getTotal() > 0) {
             echo '<h3>Plays at:</h3>';
             foreach ($venues as $venue) {
-                echo sprintf('<p>%s</p>', (string) $venue->getVenue());
+                echo sprintf('<p>%s</p>', (string) $venue);
             }
         }
        

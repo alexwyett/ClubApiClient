@@ -89,11 +89,19 @@ class Timeslot extends Builder
      */
     public function __toString()
     {
-        return $this->getDescription()
-            . ': ' . $this->getFromTime() 
-            . ' to ' 
-            . $this->getTillTime()
-            . ' every ' . $this->getDay()->getDay();
+        $str = '';
+        if ($this->getDescription() != '') {
+            $str .= $this->getDescription() . ' ';
+        }
+        if ($this->getFromTime() != '' && $this->getTillTime() != '') {
+            $str .= $this->getFromTime() 
+                . ' to ' 
+                . $this->getTillTime() . ' ';
+        }
+        
+        $str .= ' every ' . $this->getDay()->getDay();
+        
+        return $str;
     }
     
     /**

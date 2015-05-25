@@ -124,4 +124,22 @@ class ClubVenue extends Builder
             'venue_id' => $this->getVenue()->getId()
         );
     }
+    
+    /**
+     * Return simple string representation of a club venue
+     * 
+     * @return string
+     */
+    public function __toString()
+    {
+        $timeSlots = array();
+        foreach ($this->getTimeslots() as $ts) {
+            $timeSlots[] = (string) $ts;
+        }
+        return sprintf(
+            '%s: %s',
+            $this->getVenue()->getName(),
+            implode(' ', $timeSlots)
+        );
+    }
 }
